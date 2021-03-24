@@ -19,14 +19,12 @@ public class FuelGauge {
         }
         return fuel;
     }
-    int moving(int fuel, int range){
+    void moving(int fuel, int range){
         if(fuel > 0) {setFuel (fuel - (range - lastrange)/10);lastrange = range;
             System.out.println("Пройдено: " + range);
-            fuel = getFuel();
-        return fuel;}
+        }
         else {
             System.out.println("Бак пуст!");
-            fuel = refueling();
-            return fuel;}
+        }
     }
 }
