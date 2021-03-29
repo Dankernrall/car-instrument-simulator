@@ -1,14 +1,16 @@
 public class Odometer {
-    public int range,maxrange = 999999;
-    FuelGauge fuelgauge = new FuelGauge();
-    public void move(int fuel){
-        fuel = fuelgauge.getFuel();
-        if(range > maxrange){ range = 0;
-        }
-        else if (fuel > 0){
-            range+=50;fuelgauge.moving(fuel,range);
-        }
-        else{fuelgauge.setFuel(fuelgauge.refueling());
+    private int range;
+    private int maxrange = 999999;
+    private int lastrange;
+
+    public void move(FuelGauge ob) {
+        if (range > maxrange) {
+            this.lastrange = range;
+            this.range = 0;
+        } else {
+            this.lastrange = range;
+            this.range += 50;
+            ob.moving(range,lastrange);
         }
     }
 }
